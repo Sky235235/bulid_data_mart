@@ -24,10 +24,7 @@ class DBupdate:
     def table1_update(self, data):
         curs = self.conn.cursor(pymysql.cursors.DictCursor)
 
-        query = """INSERT INTO `pos`.`im_service_section_info`(boarding_datetime, dispatch_idx, boarding_type, boarding_name, status, company_name,
-                                                       driver_idx, car_number,phone_number,departure_lat, departure_lng, departure_address,
-                                                       departure_address_detail, departure_datetime, arrival_lat, arrival_lng, arrival_address, arrival_address_detail,
-                                                       arrival_datetime, payment_type, fare, toll, additional_amount, discount_amount, use_point, section, g_section)
+        query = """INSERT INTO `pos`.`im_service_section_info`(**)
            values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
 
         for i in tqdm(range(len(data))):
@@ -101,11 +98,7 @@ class DBupdate:
     def table2_update(self, data):
         curs = self.conn.cursor(pymysql.cursors.DictCursor)
 
-        query = """INSERT INTO `pos`.`im_service_car_log_info`(boarding_datetime, dispatch_idx,general_boarding_uuid,boarding_day,boarding_hour,
-                                                               boarding_week,boarding_fare,estimated_amount, reservation_fare, reservation_fee_fare,
-                                                               departure_do, departure_gu,departure_city, departure_dong,
-                                                               arrival_do,arrival_gu,arrival_city,arrival_dong, user_arrival_time,boarding_time,
-                                                               driving_distance,estimated_distance)
+        query = """INSERT INTO `pos`.`im_service_car_log_info`(**)
            values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
 
         for i in tqdm(range(len(data))):
@@ -171,8 +164,7 @@ class DBupdate:
     def table3_update(self, data):
         curs = self.conn.cursor(pymysql.cursors.DictCursor)
 
-        query = """INSERT INTO `pos`.`im_service_driver_log_info`(boarding_datetime, dispatch_idx,general_boarding_uuid, is_call ,company_idx,
-                                               car_type_idx,dispatch_type,dispatch_distance,status_change_time,status_change_distance)
+        query = """INSERT INTO `pos`.`im_service_driver_log_info`(**)
            values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
 
         for i in tqdm(range(len(data))):
